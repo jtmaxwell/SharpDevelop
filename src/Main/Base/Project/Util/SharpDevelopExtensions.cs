@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
+using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.Core;
 using ICSharpCode.Core.Presentation;
 using ICSharpCode.NRefactory;
@@ -21,6 +22,7 @@ using ICSharpCode.NRefactory.TypeSystem;
 using ICSharpCode.SharpDevelop.Dom;
 using ICSharpCode.SharpDevelop.Parser;
 using ICSharpCode.SharpDevelop.Project;
+using ICSharpCode.SharpDevelop.Workbench;
 
 namespace ICSharpCode.SharpDevelop
 {
@@ -990,6 +992,14 @@ namespace ICSharpCode.SharpDevelop
 		{
 			int startOffset = document.GetOffset(startPos);
 			return document.GetText(startOffset, document.GetOffset(endPos) - startOffset);
+		}
+		
+		/// <summary>
+		/// Retrieves the DocumentFileModelInfo associated with this TextDocument.
+		/// </summary>
+		public static DocumentFileModelInfo GetFileModelInfo(this TextDocument document)
+		{
+			return document.GetService<DocumentFileModelInfo>();
 		}
 		
 		/// <summary>
